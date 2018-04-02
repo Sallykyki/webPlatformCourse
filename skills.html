@@ -97,11 +97,16 @@
                         <option value="programming">Programming</option>
                         <option value="design">Design</option>
                     </select>
-                    <button id="addSkill">Add</button>
+                    <button class="btn btn-info" id="addSkill">Add</button>
                 </div>
                 <div class="row">
-                    <h4>Remove skill</h4>
-                    <button id="removeSkill"></button>
+                    <h4>Remove the last skill</h4>
+                    <select id="skill-type-remove" name="skill-type-remove">
+                        <option value="" disabled selected>Choose skill type</option>
+                        <option value="programming">Programming</option>
+                        <option value="design">Design</option>
+                    </select>
+                    <button class="btn btn-danger" id="removeSkill">Remove</button>
                 </div>
             </div>
         </div>

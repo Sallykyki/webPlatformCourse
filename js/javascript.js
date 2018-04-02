@@ -3,18 +3,7 @@
 // downloadCV.addEventListener("click", function() {
 // alert("download cv");
 // });
-//scroll
-// var myNav = document.getElementById("mynav");
-// window.onscroll = function() {
-//   "use strict";
-//   if (document.body.scrollTop >= 5) {
-//     myNav.classList.add("nav-colored");
-//     myNav.classList.remove("nav-transparent");
-//   } else {
-//     myNav.classList.add("nav-transparent");
-//     myNav.classList.remove("nav-colored");
-//   }
-// };
+
 //changing color while scroll
 window.addEventListener("scroll", function(e) {
   var nav = document.getElementById("mynav");
@@ -49,15 +38,16 @@ function showTime() {
 showTime();
 
 //add skills
-function addSkills() {
-  var programmingList = document.querySelector("#programming-skills");
-  var designList = document.querySelector("#desgin-skills");
-  var programmingSkills = [];
-  var designSkills = [];
-  var btn = document.querySelector("#addSkill");
+var programmingList = document.querySelector("#programming-skills");
+var designList = document.querySelector("#desgin-skills");
+var programmingSkills = [];
+var designSkills = [];
 
-  if (btn != null) {
-    btn.addEventListener("click", function() {
+function addSkills() {
+  var addBtn = document.querySelector("#addSkill");
+
+  if (addBtn != null) {
+    addBtn.addEventListener("click", function() {
       var newskillName = document.querySelector("#skill-name").value;
       var newskillCompetence = document.querySelector("#skill-competence")
         .value;
@@ -82,6 +72,27 @@ function addSkills() {
 }
 
 addSkills();
+
+//remove skill
+function removeSkill() {
+  var removeBtn = document.querySelector("#removeSkill");
+
+  if (removeBtn != null) {
+    removeBtn.addEventListener("click", function() {
+      var type = document.querySelector("#skill-type-remove").value;
+
+      if (type === "programming") {
+        programmingSkills.shift();
+        programmingList.innerHTML = renderSkills(programmingSkills);
+      }
+      if (type === "design") {
+        designSkills.shift();
+        designList.innerHTML = renderSkills(designSkills);
+      }
+    });
+  }
+}
+removeSkill();
 
 function renderSkills(skills) {
   var result = "";
