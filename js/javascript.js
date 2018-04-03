@@ -39,7 +39,7 @@ showTime();
 
 //add skills
 var programmingList = document.querySelector("#programming-skills");
-var designList = document.querySelector("#desgin-skills");
+var designList = document.querySelector("#design-skills");
 var programmingSkills = [];
 var designSkills = [];
 
