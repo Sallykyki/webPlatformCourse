@@ -107,23 +107,35 @@ footer {
 .image-hover {
   display: block;
   position: relative;
+  margin: 20px auto;
 }
 .overlay {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 0;
+  left: 0;
   height: 100%;
-  width: 20%;
-  border-radius: 50%;
+  width: 100%;
   opacity: 0;
   transition: 0.5s ease;
   background-color: #008cba;
 }
 
-.image-hover:hover .overlay {
-  opacity: 0.6;
+.image-hover .overlay {
+  visibility: hidden;
 }
+
+.image-hover .overlay.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+.project-description {
+  margin: 0 auto;
+  color: #eeeeee;
+  padding: 50px;
+  text-align: center;
+}
+
 footer {
   background-color: #9bc3dc;
 }
@@ -141,21 +153,6 @@ i {
 }
 .skill-title {
   margin-bottom: 0;
-}
-.pie {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background: yellowgreen;
-  background-image: linear-gradient(to right, transparent 50%, #655 0);
-}
-.pie::before {
-  content: "";
-  display: block;
-  margin-left: 50%;
-  height: 100%;
-  background-color: inherit;
-  transform-origin: left;
 }
 
 /* form  */

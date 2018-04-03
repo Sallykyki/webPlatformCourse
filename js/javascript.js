@@ -127,11 +127,18 @@ function skillElement(skill) {
 }
 
 //submit form
-var myForm = document.getElementById("contact-form");
+var myForm = document.querySelector("#contact-form");
+var submitAlert = document.querySelector("#submit-alert");
 if (myForm != null) {
   myForm.addEventListener("submit", function(event) {
     event.preventDefault();
-    validateForm();
+    if (validateForm()) {
+      submitAlert.innerHTML =
+        '<div class="alert alert-success">\
+      <strong>Sent!</strong> Your message has been sent to Huong. Have a nice day!\
+    </div>';
+      myForm.reset();
+    }
   });
 }
 
@@ -143,41 +150,75 @@ function validateForm() {
   var age = document.forms["contact-form"]["age"].value;
   var web = document.forms["contact-form"]["website"].value;
   var message = document.forms["contact-form"]["message"].value;
-
-  //   var lnameErr = document.querySelector("#lnameErr");
-  //   var fnameErr = document.querySelector("#fnameErr");
+  var isValid = true;
 
   if (lname.length < 1 || lname.length >= 25) {
     document.querySelector("#lnameErr").textContent =
       "Your last name is required and less than 25 characters.";
     document.querySelector("#lastname").focus();
+    isValid = false;
+  } else {
+    document.querySelector("#lnameErr").textContent = "";
   }
 
   if (fname.length < 1 || fname.length >= 25) {
     document.querySelector("#fnameErr").textContent =
       "Your first name is required and less than 25 charactesr.";
     document.querySelector("#firstname").focus();
+    isValid = false;
+  } else {
+    document.querySelector("#fnameErr").textContent = "";
   }
+
   if (email.indexOf("@", 0) < 0 || email.indexOf(".", 0) < 0) {
-    emailErr.textContent = "Please enter a valid e-mail address.";
+    document.querySelector("#emailErr").textContent =
+      "Please enter a valid e-mail address.";
     document.querySelector("#email").focus();
+    isValid = false;
+  } else {
+    document.querySelector("#emailErr").textContent = "";
   }
+
   if (web.length < 1 || website.length >= 50) {
     document.querySelector("#websiteErr").textContent =
       "Your website address is required and less than 50 characters.";
     document.querySelector("#website").focus();
+    isValid = false;
   } else {
     document.querySelector("#websiteErr").textContent = "";
   }
+
   if (age == null || isNaN(age) || age < 18 || age > 100) {
-    ageErr.textContent = "Your age is required and between 18 and 100.";
+    document.querySelector("#ageErr").textContent =
+      "Your age is required and between 18 and 100.";
     document.querySelector("#age").focus();
+    isValid = false;
   } else {
-    ageErr.textContent = "";
+    document.querySelector("#ageErr").textContent = "";
   }
+
   if (message.length < 1 || message.length >= 255) {
-    messageErr.textContent =
+    document.querySelector("#messageErr").textContent =
       "Your message is required and less than 255 characters.";
     document.querySelector("#message").focus();
+    isValid = false;
+  } else {
+    document.querySelector("#messageErr").textContent = "";
   }
+
+  return isValid;
+}
+// project mouseover and mouseout
+var imageHovers = document.getElementsByClassName("image-hover");
+
+for (var i = 0; i < imageHovers.length; i++) {
+  (function(x) {
+    imageHovers[x].addEventListener("mouseover", function() {
+      this.querySelector(".project-description").classList.add("show");
+    });
+
+    imageHovers[x].addEventListener("mouseout", function() {
+      this.querySelector(".project-description").classList.remove("show");
+    });
+  })(i);
 }
